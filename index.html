@@ -25,16 +25,23 @@
         left:50%;
         transform:translateX(-50%);
         display:flex;
-        gap:10px;
+        gap:15px;
         z-index:5;
       }
       button{
-        padding:12px 18px;
-        font-size:16px;
+        width:60px;
+        height:60px;
         border:none;
-        border-radius:8px;
-        background:#F5D061;
-        font-weight:bold;
+        border-radius:50%;
+      }
+      #drawBtn{
+        background:#00ff55;
+      }
+      #clearBtn{
+        background:#ff2b2b;
+      }
+      button:active{
+        transform:scale(0.9);
       }
     </style>
   </head>
@@ -42,8 +49,8 @@
     <video id="vid"></video>
     <canvas id="c"></canvas>
     <div class="controls">
-      <button id="drawBtn">DRAW</button>
-      <button id="clearBtn">HAPUS</button>
+      <button id="drawBtn"></button>
+      <button id="clearBtn"></button>
     </div>
   
     <script>
@@ -74,7 +81,11 @@
       drawBtn.addEventListener("mousedown",()=>shift=true);
       drawBtn.addEventListener("mouseup",()=>shift=false);
 
-      clearBtn.onclick=()=>arr=[];
+      clearBtn.onclick=()=>{
+        if(arr.length>0){
+          arr.pop();
+        }
+      };
 
       function run(res){
         c.width=window.innerWidth;
